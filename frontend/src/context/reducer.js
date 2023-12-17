@@ -4,29 +4,27 @@ export const reducer = (state, action) => {
 
         case "USER_LOGIN": {
 
-            if (action.payload?.firstName
-                && action.payload?.lastName
-                && action.payload?.isAdmin
-                && action.payload?.email
-                && action.payload?._id
+            // if (action.payload?.email
+            //     && action.payload?.name
+            //     && action.payload?.isAdmin
+            //     && action.payload?._id
+            // ) {
 
-            ) {
 
                 const role = (action.payload?.isAdmin) ? "admin" : "student";
                 const user = {
-                    firstName: action.payload?.firstName,
-                    lastName: action.payload?.lastName,
+                    name: action.payload?.name,
                     isAdmin: action.payload?.isAdmin,
                     profilePic: action.payload?.profilePic,
-                    coverPicture: action.payload?.coverPicture,
                     email: action.payload?.email,
                     _id: action.payload?._id
                 }
 
                 return { ...state, isLogin: true, role: role, user: user }
-            }
+            // }
 
         }
+
         case "USER_LOGOUT": {
             return { ...state, isLogin: false, role: null, user: {} }
         }

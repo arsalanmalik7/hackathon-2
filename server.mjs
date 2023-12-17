@@ -34,12 +34,14 @@ app.use(`/api`, LoginRouter);
 
 app.use(`/api`, (req, res, next) => {
 
-    const token = req.cookies.token;
 
-    const decoded = jwt.verify(token, process.env.SECRET)
-    console.log("decoded: ", decoded);
 
     try {
+        const token = req.cookies.token;
+
+        const decoded = jwt.verify(token, process.env.SECRET)
+        console.log("decoded: ", decoded);
+
         req.body.decoded = {
             _id: decoded._id,
             firstName: decoded.firstName,
@@ -59,10 +61,8 @@ app.use(`/api`, (req, res, next) => {
         next();
 
     } catch (error) {
-        console.log("error: ", error);
-        res.status(401).send({
-            message: "invalid token"
-        })
+        res.status(401).send({ message: " token is invalid " })
+        console.log("token is invalid");
         return;
 
     }

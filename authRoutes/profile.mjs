@@ -26,12 +26,11 @@ router.get(`/profile`, async (req, res) => {
         res.send({
             message: "profile fetched",
             data: {
-                isAdmin: result.isAdmin,
-                firstName: result.firstName,
-                lastName: result.lastName,
                 email: result.email,
+                name: result.name,
+                isAdmin: result.isAdmin,
+                _id: result._id,
                 profilePic: result.profilePic,
-                _id: result._id
             }
         })
     } catch (error) {
